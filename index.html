@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jalwa Live Result</title>
+  <style>
+    body { background-color: black; color: white; text-align: center; margin-top: 20%; }
+    #result { font-size: 2em; color: #0f0; }
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <script src="firebase.js"></script>
+</head>
+<body>
+  <h1>🎯 Jalwa Live Result</h1>
+  <div>Current Result: <span id="result">--</span></div>
+  <script>
+    const resultRef = firebase.database().ref("result");
+    resultRef.on("value", (snapshot) => {
+      document.getElementById("result").textContent = snapshot.val() || "--";
+    });
+  </script>
+</body>
+</html>
